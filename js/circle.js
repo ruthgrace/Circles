@@ -358,6 +358,7 @@ function gameTick() {
     // only with our snake
     if(username == myUserId) {
         changeDirIfCollision(username);
+        updateHUD();
       }
   });
 }
