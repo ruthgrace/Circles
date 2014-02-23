@@ -358,10 +358,10 @@ function incrementCirclePosition(username) {
   var currentCircle = circles[username];
     switch(currentCircle.direction) {
       case 'up':
-        currentCircle.position-=3;
+        currentCircle.position-=15;
         break;
       case 'down':
-        currentCircle.position+=3;
+        currentCircle.position+=15;
         break;
   }
 }
@@ -402,12 +402,12 @@ function drawFood() {
 }
 */
 function drawCircle(currentCircle) {
-  var img = new Image();
-  img.onload = function(){
+  //var img = new Image();
+  //img.onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
     canvas.context.drawImage(img, 20, currentCircle.position);
-  }
-  img.src = "./img/obtuse_medium.png";
+//  }
+  //img.src = "./img/obtuse_medium.png";
 
  /* canvas.context.fillStyle = currentCircle.color;
   for(var x = currentCircle.length-1; x >= 0; x--) {
@@ -465,7 +465,14 @@ function spawnCircle(circleUsername) {
   var newPos = {
     y: Math.round(Math.random()*(canvas.height-CIRCLE_DIAMETER))
   };
+  currentCircle.position = newPos;
 
+  var img = new Image();
+  img.onload = function(){
+      //FIX: REPLACE 20 WITH SIDE VARIABLE
+    canvas.context.drawImage(img, 20, currentCircle.position);
+  }
+  img.src = "./img/obtuse_medium.png";
   //Set new direction
   switch(Math.round(Math.random()*1)) {
     case 0:
