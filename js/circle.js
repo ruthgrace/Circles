@@ -55,7 +55,7 @@ function initializeCircle(cb) {
     currentScore: INITIAL_SCORE,
     position: DEFAULT_POSITION,
     side: '',
-    img: '',
+    img: new Image(),
     direction: ''
   };
   updateHUD();
@@ -468,7 +468,7 @@ function spawnCircle(circleUsername) {
   };
   currentCircle.position = newPos;
 
-  currentCircle.img = new Image();
+  
   currentCircle.img.onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
     canvas.context.drawImage(currentCircle.img, 20, currentCircle.position);
