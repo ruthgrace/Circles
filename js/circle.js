@@ -358,10 +358,10 @@ function incrementCirclePosition(username) {
   var currentCircle = circles[username];
     switch(currentCircle.direction) {
       case 'up':
-        currentCircle.position--;
+        currentCircle.position-=3;
         break;
       case 'down':
-        currentCircle.position++;
+        currentCircle.position+=3;
         break;
   }
 }
@@ -539,7 +539,7 @@ $(window).on('beforeunload', function(){
   });
 });
 
-var arrowKeys=new Array(37,38,39,40);
+var arrowKeys=new Array(38,40);
 
 // Keyboard Controls
 $(document).keydown(function(e){
