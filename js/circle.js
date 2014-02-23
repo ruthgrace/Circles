@@ -436,9 +436,11 @@ function changeDirIfCollision(username) {
 
   if (currentCircle.position < 10) {
     currentCircle.direction = "down";
+    updateHUD();
   }
   if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER-5)) {
     currentCircle.direction = "up";
+    updateHUD();
   }
 }
 /*
@@ -557,9 +559,9 @@ var keyboardKeys=new Array(32, 38,40);
 $(document).keydown(function(e){
   var key = e.which;
   var currentCircle = circles[myUserId];
-  if(key == "38" && currentCircle.position > 5) {
+  if(key == "38" && currentCircle.position > 3) {
     currentCircle.direction = "up";
-  } else if(key == "40" && currentCircle.position < canvas.height-CIRCLE_DIAMETER-5) {
+  } else if(key == "40" && currentCircle.position < canvas.height-CIRCLE_DIAMETER-3) {
     currentCircle.direction = "down";
   }
    else if(key == "32"){
