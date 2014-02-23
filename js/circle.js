@@ -408,7 +408,7 @@ function drawCircle(currentCircle) {
       //FIX: REPLACE 20 WITH SIDE VARIABLE
     canvas.context.drawImage(img, 20, currentCircle.position*110);
   }
-  img.src = "./img/acute_medium.png";
+  img.src = "./img/obtuse_medium.png";
 
  /* canvas.context.fillStyle = currentCircle.color;
   for(var x = currentCircle.length-1; x >= 0; x--) {
