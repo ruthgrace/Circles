@@ -42,7 +42,6 @@ var imgArray = [];
   //}
 var imageURLs=["./img/obtuse_small.png", "./img/obtuse_medium.png", "./img/obtuse_big.png", "./img/acute_small.png", "./img/acute_medium.png", "./img/acute_big.png"];  // put the paths to your images in this array
 var imgArray=[];
-imageURLs.push("");
 
     
 
