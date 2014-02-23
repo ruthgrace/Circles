@@ -343,10 +343,10 @@ function gameTick() {
         if (checkWallCollision(username)) {
           switch(currentCircle.direction) {
              case 'up':
-             currentSnake.direction = "down";
+             currentCircle.direction = "down";
              break;
              case 'down':
-             currentSnake.direction = "up";
+             currentCircle.direction = "up";
              break;
            }
         }
@@ -469,10 +469,10 @@ function spawnCircle(circleUsername) {
   //Set new direction
   switch(Math.round(Math.random()*1)) {
     case 0:
-      currentSnake.direction = 'up';
+      currentCircle.direction = 'up';
       break;
     case 1:
-      currentSnake.direction = 'down';
+      currentCircle.direction = 'down';
       break;
   }
 
@@ -544,19 +544,19 @@ var arrowKeys=new Array(37,38,39,40);
 // Keyboard Controls
 $(document).keydown(function(e){
   var key = e.which;
-  var currentSnake = snakes[myUserId];
-  if(key == "38" && currentSnake.direction != "down") {
-    currentSnake.direction = "up";
-  } else if(key == "40" && currentSnake.direction != "up") {
-    currentSnake.direction = "down";
+  var currentCircle = circles[myUserId];
+  if(key == "38" && currentCircle.direction != "down") {
+    currentCircle.direction = "up";
+  } else if(key == "40" && currentCircle.direction != "up") {
+    currentCircle.direction = "down";
   }
 
   if($.inArray(key,arrowKeys) > -1) {
     e.preventDefault();
   }
 
-  if (myUserId && currentSnake) {
-    snakeKey.key("/" + myUserId).set(currentSnake, function(err) {
+  if (myUserId && currentCircle) {
+    circleKey.key("/" + myUserId).set(currentCircle, function(err) {
       if(err) {
         throw err;
       }
