@@ -358,10 +358,10 @@ function incrementCirclePosition(username) {
   var currentCircle = circles[username];
     switch(currentCircle.direction) {
       case 'up':
-        currentCircle.blocks[0].y--;
+        currentCircle.position--;
         break;
       case 'down':
-        currentCircle.blocks[0].y++;
+        currentCircle.position++;
         break;
   }
 }
