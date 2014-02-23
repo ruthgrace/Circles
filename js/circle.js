@@ -440,10 +440,10 @@ function drawCircle(currentCircle) {
 function changeDirIfCollision(username) {
   var currentCircle = circles[username];
 
-  if (currentCircle.position < 0) {
+  if (currentCircle.position < 20) {
     currentCircle.direction = "down";
   }
-  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER)) {
+  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER-20)) {
     currentCircle.direction = "up";
   }
 }
