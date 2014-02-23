@@ -5,7 +5,7 @@
   float: right; }
 
 body {
-  background: #63FF9C;
+  background: #10416F;
   padding-top: 2em;
   -webkit-font-smoothing: antialiased;
   font-family: "proxima-nova", "proxima-nova-n4", Helvetica, Arial, sans-serif; }
@@ -28,10 +28,10 @@ body {
 
 #sidebar {
   float: left;
-  width: 147px; } 
+  width: 147px; }
 
 canvas {
-  border: 8px solid #41AB68;
+  border: 8px solid #0d3459;
   border-top: 0;
   border-radius: 0 0 5px 5px; }
 
