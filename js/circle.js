@@ -138,7 +138,7 @@ function initializeGame() {
 
       for (var i=0; i<imageURLs.length; i++) {
         var img = new Image();
-        imgs.push(img);
+        imgArray.push(img);
         img.onload = function(){ 
             }
         ;
