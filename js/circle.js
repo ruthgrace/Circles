@@ -545,9 +545,9 @@ var arrowKeys=new Array(37,38,39,40);
 $(document).keydown(function(e){
   var key = e.which;
   var currentCircle = circles[myUserId];
-  if(key == "38" && currentCircle.direction != "down") {
+  if(key == "38") {
     currentCircle.direction = "up";
-  } else if(key == "40" && currentCircle.direction != "up") {
+  } else if(key == "40") {
     currentCircle.direction = "down";
   }
 
