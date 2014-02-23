@@ -364,17 +364,7 @@ function gameTick() {
 
     // only with our snake
     if(username == myUserId) {
-
-        if (checkWallCollision(username)) {
-          switch(currentCircle.direction) {
-             case 'up':
-             currentCircle.direction = "down";
-             break;
-             case 'down':
-             currentCircle.direction = "up";
-             break;
-           }
-        }
+        changeDirIfCollision(username);
       }
   });
 }
@@ -447,14 +437,15 @@ function drawCircle(currentCircle) {
 }
 
 // this will get rid of other snakes from lost connections, etc.
-function checkWallCollision(username) {
+function changeDirIfCollision(username) {
   var currentCircle = circles[username];
 
-  if (currentCircle.position < 0 ||
-       currentCircle.position > (canvas.height-CIRCLE_DIAMETER)) {
-    return true;
+  if (currentCircle.position < 0) {
+    currentCircle.direction = "down";
   }
-  return false;
+  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER)) {
+    currentCircle.direction = "up";
+  }
 }
 /*
 function checkFoodCollision(username) {
