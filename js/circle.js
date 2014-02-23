@@ -35,7 +35,7 @@ var obstacles = {};
 // circles
 var circles = {};
 var circleKey;
-var imgArray = new Array();
+var imgArray = [];
 imgArray[0] = new Image();
 imgArray[0].src = "./img/obtuse_small.png";
 imgArray[1] = new Image();
