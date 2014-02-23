@@ -23,7 +23,7 @@ var ANGLE_APP_URL = 'https://goinstant.net/5ad9da5ff88e/swag420yolo';
 var ANGLER_SPEED = 100;
 var ANGLER_COOLDOWN = 10;
 var CIRCLE_DIAMETER = 160;
-var DEFAULT_POSITION = 3;
+var DEFAULT_POSITION = 2;
 var INITIAL_SCORE = 0;
 var BLOCK_SIZE = 10;
 
