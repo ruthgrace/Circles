@@ -26,6 +26,8 @@ var CIRCLE_DIAMETER = 110;
 var DEFAULT_POSITION = 300;
 var INITIAL_SCORE = 0;
 var BLOCK_SIZE = 10;
+var DEFAULT_IMAGE = 0;
+
 
 // obstacles for later versions
 var obstacles = {};
@@ -33,6 +35,23 @@ var obstacles = {};
 // circles
 var circles = {};
 var circleKey;
+var imgArray = new Array();
+imgArray[0] = new Image();
+imgArray[0].src = "./img/obtuse_small.png";
+imgArray[1] = new Image();
+imgArray[1].src = "./img/obtuse_medium.png";
+imgArray[2] = new Image();
+imgArray[2].src = "./img/obtuse_big.png";
+imgArray[3] = new Image();
+imgArray[3].src = "./img/acute_small.png";
+imgArray[4] = new Image();
+imgArray[4].src = "./img/acute_medium.png";
+imgArray[5] = new Image();
+imgArray[5].src = "./img/acute_big.png";
+
+
+
+
 
 var lobby;
 var el = {};
@@ -55,7 +74,7 @@ function initializeCircle(cb) {
     currentScore: INITIAL_SCORE,
     position: DEFAULT_POSITION,
     side: '',
-    img: new Image(),
+    image: DEFAULT_IMAGE,
     direction: ''
   };
   updateHUD();
@@ -403,12 +422,10 @@ function drawFood() {
 }
 */
 function drawCircle(currentCircle) {
-  //var img = new Image();
-  //img.onload = function(){
+  imgArray[currentCircle.image].onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
-    canvas.context.drawImage(currentCircle.img, 20, currentCircle.position);
-//  }
-  //img.src = "./img/obtuse_medium.png";
+    canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
+  }
 
  /* canvas.context.fillStyle = currentCircle.color;
   for(var x = currentCircle.length-1; x >= 0; x--) {
@@ -469,11 +486,10 @@ function spawnCircle(circleUsername) {
   currentCircle.position = newPos;
 
   
-  currentCircle.img.onload = function(){
+ imgArray[currentCircle.image].onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
-    canvas.context.drawImage(currentCircle.img, 20, currentCircle.position);
+    canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
   }
-  currentCircle.img.src = "./img/obtuse_medium.png";
   //Set new direction
   switch(Math.round(Math.random()*1)) {
     case 0:
