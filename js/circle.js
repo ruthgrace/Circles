@@ -22,8 +22,8 @@ var myUserName;
 var ANGLE_APP_URL = 'https://goinstant.net/5ad9da5ff88e/swag420yolo';
 var ANGLER_SPEED = 100;
 var ANGLER_COOLDOWN = 10;
-var CIRCLE_DIAMETER = 160;
-var DEFAULT_POSITION = 2;
+var CIRCLE_DIAMETER = 110;
+var DEFAULT_POSITION = 300;
 var INITIAL_SCORE = 0;
 var BLOCK_SIZE = 10;
 
@@ -43,6 +43,12 @@ function updateHUD() {
   el.teamScore.text(teamScore);
 }
 
+
+function createAngler(cb) {
+  anglers[myUserId] = {
+
+  }
+}
 
 function initializeCircle(cb) {
   circles[myUserId] = {
@@ -88,6 +94,8 @@ function initializeCircle(cb) {
     });
   });
 }
+
+
 function initializeHighScore(cb) {
   var teamScoreKey = lobby.key('/teamScore');
   teamScoreKey.on('set', function(val, context) {
@@ -327,46 +335,37 @@ function gameTick() {
     var currentCircle = circles[username];
 
     drawCircle(currentCircle);
-   // incrementSnakePosition(username);
+    incrementCirclePosition(username);
 
     // only with our snake
     if(username == myUserId) {
-/*
-      if (checkWallCollision(username)) {
-        spawnCircle(username);
+
+        if (checkWallCollision(username)) {
+          switch(currentCircle.direction) {
+             case 'up':
+             currentSnake.direction = "down";
+             break;
+             case 'down':
+             currentSnake.direction = "up";
+             break;
+           }
+        }
       }
-
-      // This will prevent all other players from respawning the food
-      if (checkFoodCollision(username)) {
-
-        increaseSnakeLength(username);
-        spawnFood(null);
-        currentCircle.currentScore++;
-        updateHighScore(username);
-        updateHUD();
-      }*/
-    }
   });
 }
-/*
-function incrementSnakePosition(username) {
-  var currentCircle = snakes[username];
-    switch(currentCircle.REPLACEMEUSELESSCODE) {
+
+function incrementCirclePosition(username) {
+  var currentCircle = circles[username];
+    switch(currentCircle.direction) {
       case 'up':
         currentCircle.blocks[0].y--;
         break;
       case 'down':
         currentCircle.blocks[0].y++;
         break;
-      case 'left':
-        currentCircle.blocks[0].x--;
-        break;
-      case 'right':
-        currentCircle.blocks[0].x++;
-        break;
   }
 }
-*/
+
 /*
 function increaseSnakeLength(username) {
   var currentCircle = circles[username];
@@ -406,7 +405,7 @@ function drawCircle(currentCircle) {
   var img = new Image();
   img.onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
-    canvas.context.drawImage(img, 20, currentCircle.position*110);
+    canvas.context.drawImage(img, 20, currentCircle.position);
   }
   img.src = "./img/obtuse_medium.png";
 
@@ -423,19 +422,17 @@ function drawCircle(currentCircle) {
     }
   }*/
 }
-/*
+
 // this will get rid of other snakes from lost connections, etc.
 function checkWallCollision(username) {
-  var currentCircle = snakes[username];
+  var currentCircle = circles[username];
 
-  if (currentCircle.blocks[0].y < 0 ||
-       currentCircle.blocks[0].y > (canvas.height/BLOCK_SIZE) ||
-       currentCircle.blocks[0].x < 0 ||
-       currentCircle.blocks[0].x > (canvas.width/BLOCK_SIZE)) {
+  if (currentCircle.position < 0 ||
+       currentCircle.position > (canvas.height-CIRCLE_DIAMETER)) {
     return true;
   }
   return false;
-}*/
+}
 /*
 function checkFoodCollision(username) {
   var currentCircle = snakes[username];
@@ -460,67 +457,25 @@ function updateHighScore(userName) {
 }
 
 function spawnCircle(circleUsername) {
-  //spawn a new instance of the snake & destroy the old
   var currentCircle = circles[circleUsername];
 
-  //Set length to default
-  //currentCircle.length = INITIAL_SNAKE_LENGTH;
-
-  //Did the user hit a high score?
-  //updateHighScore(circleUsername);
-
-  //Reset score
   currentCircle.currentScore = INITIAL_SCORE;
   updateHUD();
 
-  //Find new spawn location
-  /*var newPos = {
-    x: Math.round(Math.random()*(canvas.width-BLOCK_SIZE)/BLOCK_SIZE),
-    y: Math.round(Math.random()*(canvas.height-BLOCK_SIZE)/BLOCK_SIZE)
-  };*/
-/*
-  //Set new REPLACEMEUSELESSCODE
-  switch(Math.round(Math.random()*3)) {
+  var newPos = {
+    y: Math.round(Math.random()*(canvas.height-CIRCLE_DIAMETER))
+  };
+
+  //Set new direction
+  switch(Math.round(Math.random()*1)) {
     case 0:
-      currentCircle.REPLACEMEUSELESSCODE = 'up';
+      currentSnake.direction = 'up';
       break;
     case 1:
-      currentCircle.REPLACEMEUSELESSCODE = 'down';
-      break;
-    case 2:
-      currentCircle.REPLACEMEUSELESSCODE = 'left';
-      break;
-    case 3:
-      currentCircle.REPLACEMEUSELESSCODE = 'right';
+      currentSnake.direction = 'down';
       break;
   }
 
-  //Setup new snake blocks
-  currentCircle.blocks[0].x = newPos.x;
-  currentCircle.blocks[0].y = newPos.y;
-
-  for(var x = 1; x < currentCircle.length; x++) {
-    currentCircle.blocks[x].x = currentCircle.blocks[x-1].x;
-    currentCircle.blocks[x].y = currentCircle.blocks[x-1].y;
-
-    switch(currentCircle.REPLACEMEUSELESSCODE){
-      case 'up':
-        currentCircle.blocks[x].y++;
-        break;
-      case 'down':
-        currentCircle.blocks[x].y--;
-        break;
-      case 'right':
-        currentCircle.blocks[x].x--;
-        break;
-      case 'left':
-        currentCircle.blocks[x].x++;
-        break;
-      default:
-        throw new Error("invalid snake REPLACEMEUSELESSCODE");
-    }
-  }
-*/
   this.circleKey.key("/" + myUserId).set(currentCircle, function(err) {
     if(err) throw err;
   });
@@ -583,33 +538,28 @@ $(window).on('beforeunload', function(){
     }
   });
 });
-/*
+
 var arrowKeys=new Array(37,38,39,40);
 
 // Keyboard Controls
 $(document).keydown(function(e){
   var key = e.which;
-  var currentCircle = circles[myUserId];
-  if(key == "37" && currentCircle.REPLACEMEUSELESSCODE != "right") {
-    currentCircle.REPLACEMEUSELESSCODE = "left";
-  } else if(key == "38" && currentCircle.REPLACEMEUSELESSCODE != "down") {
-    currentCircle.REPLACEMEUSELESSCODE = "up";
-  } else if(key == "39" && currentCircle.REPLACEMEUSELESSCODE != "left") {
-    currentCircle.REPLACEMEUSELESSCODE = "right";
-  } else if(key == "40" && currentCircle.REPLACEMEUSELESSCODE != "up") {
-    currentCircle.REPLACEMEUSELESSCODE = "down";
+  var currentSnake = snakes[myUserId];
+  if(key == "38" && currentSnake.direction != "down") {
+    currentSnake.direction = "up";
+  } else if(key == "40" && currentSnake.direction != "up") {
+    currentSnake.direction = "down";
   }
 
   if($.inArray(key,arrowKeys) > -1) {
     e.preventDefault();
   }
 
-  if (myUserId && currentCircle) {
-    circleKey.key("/" + myUserId).set(currentCircle, function(err) {
+  if (myUserId && currentSnake) {
+    snakeKey.key("/" + myUserId).set(currentSnake, function(err) {
       if(err) {
         throw err;
       }
     });
   }
 });
-*/
