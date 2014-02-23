@@ -485,9 +485,7 @@ function spawnCircle(circleUsername) {
   currentCircle.currentScore = INITIAL_SCORE;
   updateHUD();
 
-  var newPos = {
-    y: Math.round(Math.random()*(canvas.height-CIRCLE_DIAMETER))
-  };
+  var newPos = Math.round(Math.random()*(canvas.height-CIRCLE_DIAMETER));
   currentCircle.position = newPos;
 
   
