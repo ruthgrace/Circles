@@ -55,7 +55,8 @@ function initializeCircle(cb) {
     currentScore: INITIAL_SCORE,
     position: DEFAULT_POSITION,
     side: '',
-    REPLACEMEUSELESSCODE: ''
+    img: '',
+    direction: ''
   };
   updateHUD();
 
@@ -405,7 +406,7 @@ function drawCircle(currentCircle) {
   //var img = new Image();
   //img.onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
-    canvas.context.drawImage(img, 20, currentCircle.position);
+    canvas.context.drawImage(currentCircle.img, 20, currentCircle.position);
 //  }
   //img.src = "./img/obtuse_medium.png";
 
@@ -467,12 +468,12 @@ function spawnCircle(circleUsername) {
   };
   currentCircle.position = newPos;
 
-  var img = new Image();
-  img.onload = function(){
+  currentCircle.img = new Image();
+  currentCircle.img.onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
-    canvas.context.drawImage(img, 20, currentCircle.position);
+    canvas.context.drawImage(currentCircle.img, 20, currentCircle.position);
   }
-  img.src = "./img/obtuse_medium.png";
+  currentCircle.img.src = "./img/obtuse_medium.png";
   //Set new direction
   switch(Math.round(Math.random()*1)) {
     case 0:
