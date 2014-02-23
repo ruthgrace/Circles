@@ -17,6 +17,7 @@ var query;
 //User stuff
 var myUserId;
 var myUserName;
+var UserSide;
 
 //Defaults
 var ANGLE_APP_URL = 'https://goinstant.net/5ad9da5ff88e/swag420yolo';
@@ -35,11 +36,6 @@ var obstacles = {};
 // circles
 var circles = {};
 var circleKey;
-var imgArray = [];
-//imgArray[currentCircle.image].onload = function(){
-      //FIX: REPLACE 20 WITH SIDE VARIABLE
-    //canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
-  //}
 var imageURLs=["./img/obtuse_small.png", "./img/obtuse_medium.png", "./img/obtuse_big.png", "./img/acute_small.png", "./img/acute_medium.png", "./img/acute_big.png"];  // put the paths to your images in this array
 var imgArray=[];
 
@@ -58,10 +54,12 @@ function updateHUD() {
 }
 
 
-function createAngler(cb) {
-  anglers[myUserId] = {
-
-  }
+function spawnAngler(x, y, facedirection) {
+  var me = this;
+  this.x = x;
+  this.y = y;
+  this.facedirection = facedirection;
+  this.direction = this.y > canvas.height/2 ? 1 : -1;
 }
 
 function initializeCircle(cb) {
@@ -83,12 +81,6 @@ function initializeCircle(cb) {
 
     $('.user-label').css('background-color',color);
 
-    // set that as their snake color
-  /*  snakes[myUserId].color = color;
-
-    for(var x = 0; x < snakes[myUserId].length; x++) {
-      snakes[myUserId].blocks[x] = { x: 0, y: 0 };
-    }*/
     var circleListener = function(val, context) {
       var username = context.key.substr('/circles/'.length);
       circles[username] = context.value;
@@ -322,6 +314,14 @@ function initializeNotifications(cb) {
 function initializeGameLoop(cb) {
   if(typeof gameTimer != "undefined") {
     clearInterval(gameTimer);
+  }
+  var currentCircle = circles[myUserId];
+  if (myUserId && currentCircle) {
+    circleKey.key("/" + myUserId).set(currentCircle, function(err) {
+      if(err) {
+        throw err;
+      }
+    });
   }
   gameTimer = setInterval(gameTick, 60);
   return cb();
@@ -557,7 +557,7 @@ $(window).on('beforeunload', function(){
   });
 });
 
-var arrowKeys=new Array(38,40);
+var keyboardKeys=new Array(32, 38,40);
 
 // Keyboard Controls
 $(document).keydown(function(e){
@@ -568,8 +568,10 @@ $(document).keydown(function(e){
   } else if(key == "40") {
     currentCircle.direction = "down";
   }
+   else if(key == "32"){
+   }
 
-  if($.inArray(key,arrowKeys) > -1) {
+  if($.inArray(key,keyboardKeys) > -1) {
     e.preventDefault();
   }
 
