@@ -440,10 +440,10 @@ function drawCircle(currentCircle) {
 function changeDirIfCollision(username) {
   var currentCircle = circles[username];
 
-  if (currentCircle.position < 5) {
+  if (currentCircle.position < 10) {
     currentCircle.direction = "down";
   }
-  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER-5)) {
+  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER-115)) {
     currentCircle.direction = "up";
   }
 }
@@ -563,7 +563,7 @@ var keyboardKeys=new Array(32, 38,40);
 $(document).keydown(function(e){
   var key = e.which;
   var currentCircle = circles[myUserId];
-  if(key == "38" && currentCircle.position > 0) {
+  if(key == "38" && currentCircle.position > 5) {
     currentCircle.direction = "up";
   } else if(key == "40" && currentCircle.position < canvas.height) {
     currentCircle.direction = "down";
