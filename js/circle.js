@@ -315,14 +315,7 @@ function initializeGameLoop(cb) {
   if(typeof gameTimer != "undefined") {
     clearInterval(gameTimer);
   }
-  var currentCircle = circles[myUserId];
-  if (myUserId && currentCircle) {
-    circleKey.key("/" + myUserId).set(currentCircle, function(err) {
-      if(err) {
-        throw err;
-      }
-    });
-  }
+  
   gameTimer = setInterval(gameTick, 60);
   return cb();
 }
@@ -443,7 +436,7 @@ function changeDirIfCollision(username) {
   if (currentCircle.position < 10) {
     currentCircle.direction = "down";
   }
-  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER-115)) {
+  if (currentCircle.position > (canvas.height-CIRCLE_DIAMETER-5)) {
     currentCircle.direction = "up";
   }
 }
@@ -565,7 +558,7 @@ $(document).keydown(function(e){
   var currentCircle = circles[myUserId];
   if(key == "38" && currentCircle.position > 5) {
     currentCircle.direction = "up";
-  } else if(key == "40" && currentCircle.position < canvas.height) {
+  } else if(key == "40" && currentCircle.position < canvas.height-CIRCLE_DIAMETER-5) {
     currentCircle.direction = "down";
   }
    else if(key == "32"){
