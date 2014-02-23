@@ -36,22 +36,15 @@ var obstacles = {};
 var circles = {};
 var circleKey;
 var imgArray = [];
-imgArray[0] = new Image();
-imgArray[0].src = "./img/obtuse_small.png";
-imgArray[1] = new Image();
-imgArray[1].src = "./img/obtuse_medium.png";
-imgArray[2] = new Image();
-imgArray[2].src = "./img/obtuse_big.png";
-imgArray[3] = new Image();
-imgArray[3].src = "./img/acute_small.png";
-imgArray[4] = new Image();
-imgArray[4].src = "./img/acute_medium.png";
-imgArray[5] = new Image();
-imgArray[5].src = "./img/acute_big.png";
 //imgArray[currentCircle.image].onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
     //canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
   //}
+var imageURLs=["./img/obtuse_small.png", "./img/obtuse_medium.png", "./img/obtuse_big.png", "./img/acute_small.png", "./img/acute_medium.png", "./img/acute_big.png"];  // put the paths to your images in this array
+var imgArray=[];
+imageURLs.push("");
+
+    
 
 
 
@@ -143,6 +136,16 @@ function initializeGame() {
 
       circleKey = lobby.key('/circles');
 
+      for (var i=0; i<imageURLs.length; i++) {
+        var img = new Image();
+        imgs.push(img);
+        img.onload = function(){ 
+            }
+        ;
+        img.onerror=function(){alert("image load failed");} 
+        img.crossOrigin="anonymous";
+        img.src = imageURLs[i];
+      }
       async.series([
         initializeUser,
        // initializeFood,
