@@ -48,7 +48,10 @@ imgArray[4] = new Image();
 imgArray[4].src = "./img/acute_medium.png";
 imgArray[5] = new Image();
 imgArray[5].src = "./img/acute_big.png";
-
+//imgArray[currentCircle.image].onload = function(){
+      //FIX: REPLACE 20 WITH SIDE VARIABLE
+    //canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
+  //}
 
 
 
@@ -422,10 +425,10 @@ function drawFood() {
 }
 */
 function drawCircle(currentCircle) {
-  imgArray[currentCircle.image].onload = function(){
+  //imgArray[currentCircle.image].onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
     canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
-  }
+ // }
 
  /* canvas.context.fillStyle = currentCircle.color;
   for(var x = currentCircle.length-1; x >= 0; x--) {
@@ -486,10 +489,10 @@ function spawnCircle(circleUsername) {
   currentCircle.position = newPos;
 
   
- imgArray[currentCircle.image].onload = function(){
+// imgArray[currentCircle.image].onload = function(){
       //FIX: REPLACE 20 WITH SIDE VARIABLE
     canvas.context.drawImage(imgArray[currentCircle.image], 20, currentCircle.position);
-  }
+  //}
   //Set new direction
   switch(Math.round(Math.random()*1)) {
     case 0:
