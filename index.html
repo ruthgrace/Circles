@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GoInstant@McHacks - Angles</title>
+
+  <!-- Typekit -->
+  <script type="text/javascript" src="//use.typekit.net/glz3xzc.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+	<!-- Javascript -->
+	<script type="text/javascript" src="http://codeorigin.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="https://cdn.goinstant.net/v1/platform.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.2.1/lodash.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/async/0.2.7/async.min.js"></script>
+    
+    <!-- GoInstant Widgets -->
+    <script type="text/javascript" src="https://cdn.goinstant.net/widgets/user-list/latest/user-list.min.js"></script>
+    <script type="text/javascript" src="https://cdn.goinstant.net/widgets/notifications/latest/notifications.min.js"></script>
+    <script type="text/javascript" src="https://cdn.goinstant.net/widgets/user-colors/latest/user-colors.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.goinstant.net/widgets/notifications/latest/notifications.css" />
+    <link rel="stylesheet" href="https://cdn.goinstant.net/widgets/user-list/latest/user-list.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=109125822569083";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div id="container">
+  	<h1>Angles</h1>
+    <p>Angles was built in part with GoInstant (for the realtime, multi-user parts!) Sign up here to try it free: <a href="http://goinstant.com/" style="color: #FFF;">http://goinstant.com/</a></p>
+  	<!-- Lets make a simple snake game -->
+    <div id="game">
+      <div class="hud">
+        <div class="user left">
+          <p><span class="user-label"></span><span class="user-score score">0</span></p>
+        </div>
+        <!-- <div class="notify-container">Thomas has joined.</div> -->
+      </div>
+    	<div id="canvas-container">
+        <canvas id="canvas" width="800" height="600"></canvas>
+      </div>
+    </div>
+    <div id="sidebar">
+      <div class="high-score">
+        <h4><i class="icon icon-star"></i>Score</h4>
+        <span class="score">0</span>
+      </div>
+      <div class="user-list-container"></div>
+      <div class="invite-a-friend">
+        <h4><i class="icon icon-add-user"></i>Invite a Friend</h4>
+      </div>
+    </div>
+    <div class="instructions">
+      <p><i class="icon icon-arrow-keys"></i> PLACEHOLDER</p>
+      <p><i class="icon icon-warning"></i> placeholder</p>
+      <ul class="social">
+        <li class="fb"><div class="fb-like" data-href="https://github.com/piwh1000/GoSnake" data-width="The pixel width of the plugin" data-colorscheme="dark" data-layout="button_count" data-action="like" data-show-faces="true" data-send="false"></div></li>
+        <li class="twitter">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://piwh1000.github.io/GoSnake/" data-text="Snakes + @GoInstant = Multiplayer Snakes">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</li>
+      </ul>
+    </div>
+  	<script src="js/snake.js"></script>
+  </div> 
+  <!--Fork button-->
+  <a href="https://github.com/piwh1000/GoSnake"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+
+  <!--Share modal-->
+  <div id="modal-outer">
+    <div id="modal">
+      <h2>Invite Friends</h2>
+      <p>Snakes can be fun by yourself, but it is <strong>WAY more fun</strong> with your friends. Invite some friends to play with you.</p>
+      <a href="#" target="_blank" id="twitter-link"><img src="./img/share-twitter.png" /></a>
+      <a href="#" target="_blank" id="facebook-link"><img src="./img/share-facebook.png" /></a>
+      <a href="#close" title="Close" class="close">Close</a>
+    </div>
+  </div>
+
+	<!--Google Analytics-->
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-31940858-1']);
+		_gaq.push(['_setDomainName', 'goinstant.com']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</body>	
+</html>
+
