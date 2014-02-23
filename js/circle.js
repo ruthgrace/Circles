@@ -520,12 +520,12 @@ function drawDebugCanvas() {
 }
 
 function drawCanvas() {
-  if (DEBUG_MODE) {
-    drawDebugCanvas();
-  } else {
+  //if (DEBUG_MODE) {
+  //  drawDebugCanvas();
+ // } else {
     canvas.context.fillStyle = "white";
     canvas.context.fillRect(0, 0, canvas.width, canvas.height);
-  }
+//  }
 }
 /*
 function spawnFood(cb) {
